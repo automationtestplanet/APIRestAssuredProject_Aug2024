@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 public class Data {	
-	String id;
+	int id;
 	String email;
 	String firstName;
 	String lastName;

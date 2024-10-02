@@ -5,7 +5,7 @@
     <classes>
       <class name="rest.apis.UserServiceTest">
         <methods>
-          <include name="getListOfUsers"/>
+          <include name="deleteUserWithDELETE"/>
         </methods>
       </class> <!-- rest.apis.UserServiceTest -->
     </classes>
