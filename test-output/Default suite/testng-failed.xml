@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="rest.apis.UserServiceTest">
+      <class name="restapi.tests.UserServiceTest">
         <methods>
-          <include name="deleteUserWithDELETE"/>
+          <include name="getSingleUserTest"/>
         </methods>
-      </class> <!-- rest.apis.UserServiceTest -->
+      </class> <!-- restapi.tests.UserServiceTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

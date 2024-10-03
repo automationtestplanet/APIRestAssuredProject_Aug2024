@@ -160,7 +160,6 @@ public class UserServiceTest {
 
 			String filePath = System.getProperty("user.dir")
 					+ "\\src\\test\\resources\\TestData\\UserServiceTestData\\CreateUser.json";
-			;
 
 			ObjectMapper objMapper = new ObjectMapper();
 			CreateUser createUserDetailsFromFile = objMapper.readValue(Paths.get(filePath).toFile(), CreateUser.class);
