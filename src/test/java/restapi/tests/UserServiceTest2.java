@@ -19,16 +19,16 @@ import io.restassured.specification.RequestSpecification;
 import junit.framework.Assert;
 import pojoclasses.CreateUser;
 
-public class UserServiceTest {
+public class UserServiceTest2 {
 
-	RequestSpecification rs = RestAssured.given().baseUri("https://reqres.in");
-	UserService userService = new UserService();
+	RequestSpecification rs = RestAssured.given().baseUri("https://reqres.in").basePath("/api/users");
+	UserService2 userService = new UserService2();
 
 	@Test
 	public void getLisOfUsersByPageTest() {
 		Map<String, Object> queryParam = new HashMap<>();
 		queryParam.put("page", 2);
-		List<Map<String, Object>> dataList = userService.getListOfUsers(rs, "/api/users", queryParam, 200);
+		List<Map<String, Object>> dataList = userService.getListOfUsers(rs, queryParam, 200);
 		Assert.assertTrue(dataList.size() > 0);
 	}
 

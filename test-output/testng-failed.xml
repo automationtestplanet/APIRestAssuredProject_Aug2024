@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="restapi.tests.UserServiceTest">
+      <class name="restapi.tests.UserServiceTest2">
         <methods>
           <include name="getSingleUserTest"/>
         </methods>
-      </class> <!-- restapi.tests.UserServiceTest -->
+      </class> <!-- restapi.tests.UserServiceTest2 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,27 +1,42 @@
 package restapi.tests;
 
-import static io.restassured.RestAssured.given;
-
 import java.util.Map;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.hamcrest.core.IsNull;
+import org.testng.annotations.BeforeTest;
+
+import com.google.common.net.HostAndPort;
 
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 
-public class RestApiUtils {
-
-	public ValidatableResponse get(RequestSpecification rs, String endPoint, int statusCode) {
-		return rs.when().get(endPoint).then().log().ifValidationFails().body(IsNull.notNullValue())
+public class RestApiUtils2 {
+	
+	ResponseSpecification resSpec;
+	RequestSpecification reqSpec;
+	@BeforeTest
+	public void setup() {
+		RestAssured.proxy.host("atp.com").port(8080);
+		 RestAssured.config().sslConfig(null);
+		reqSpec =  RestAssured.given().relaxedHTTPSValidation();
+		reqSpec = RestAssured.given().auth().basic("", "");
+		
+		resSpec = RestAssured.expect().log().ifValidationFails().body(IsNull.notNullValue());
+	}
+	
+	
+	public ValidatableResponse get(RequestSpecification rs, int statusCode) {
+		return (ValidatableResponse) RestAssured.given().spec(rs).when().then().log().ifValidationFails().body(IsNull.notNullValue())
 				.statusCode(statusCode);
 	}
 
-	public ValidatableResponse getWithQueryParameters(RequestSpecification rs, String endPoint,
+	public ValidatableResponse getWithQueryParameters(RequestSpecification rs,
 			Map<String, Object> queryParams, int statusCode) {
-		return rs.with().queryParams(queryParams).when().get(endPoint).then().log().ifValidationFails()
-				.body(IsNull.notNullValue()).statusCode(statusCode);
+		return  (ValidatableResponse) RestAssured.given().spec(rs).with().queryParams(queryParams).when().then().spec(resSpec).statusCode(statusCode);
 	}
 
 	public ValidatableResponse getWithPathParameters(RequestSpecification rs, String endPoint,
@@ -142,5 +157,4 @@ public class RestApiUtils {
 				.ifValidationFails().body(IsNull.notNullValue()).statusCode(statusCode);
 
 	}
-
 }
